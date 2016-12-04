@@ -12,7 +12,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@CrossOrigin(origins= "http://localhost:8100")
+@CrossOrigin(origins= "*")
 @Controller
 public class LoginController {
 
@@ -21,7 +21,7 @@ public class LoginController {
 
 
     @RequestMapping("/login")
-    public @ResponseBody boolean login(@RequestBody @Valid final User user, @Context final HttpServletRequest request){
+            public @ResponseBody boolean login(@RequestBody @Valid final User user, @Context final HttpServletRequest request){
         User foundUser = user;
         System.out.println("Avant if: " + foundUser.getLogin());
         System.out.println("Avant if: " + foundUser.getPassword());
