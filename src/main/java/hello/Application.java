@@ -9,17 +9,17 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @SpringBootApplication
-public class Application extends SpringBootServletInitializer {
+public class Application{
 
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(Application.class);
-    }
+//    @Override
+//    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+//        return application.sources(Application.class);
+//    }
 
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
-    private static Class<Application> applicationClass = Application.class;
+   // private static Class<Application> applicationClass = Application.class;
 }
