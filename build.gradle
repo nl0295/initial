@@ -1,0 +1,44 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+war {
+    baseName = 'elivret'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.1.4.RELEASE'
+    compile("org.hibernate:hibernate-core:5.2.3.Final")
+    compile ('javax.servlet:javax.servlet-api:3.1.0')
+    compile 'org.javassist:javassist:3.15.0-GA'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.39'
+    compile group: 'postgresql', name: 'postgresql', version: '9.0-801.jdbc4'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.3'
+    compile 'com.itextpdf:itextg:5.5.10'
+    compile 'commons-dbcp:commons-dbcp:1.4'
+    compile group: 'commons-net', name: 'commons-net', version: '3.3'
+    compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.0'
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
