@@ -13,9 +13,9 @@ import java.util.List;
 public class CompetencesDaoImpl implements CompetencesDao {
 
     @Override
-    public List<Competences> listeCompetences() throws IOException {
+    public List<Competences> listeCompetences(String login) throws IOException {
         ObjectMapper mapper =new ObjectMapper();
-        List<Competences> res= mapper.readValue(new URL("http://82.223.14.220/ewp2486/livretPSS.php"), List.class);
+        List<Competences> res= mapper.readValue(new URL("http://82.223.14.220/ewp2486/livretPSS.php?login="+login), List.class);
         return res;
     };
 

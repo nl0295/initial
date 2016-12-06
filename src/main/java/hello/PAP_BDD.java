@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by nicol on 01/12/2016.
- */
 public class PAP_BDD {
 
     private int id;
@@ -24,7 +21,7 @@ public class PAP_BDD {
     private List<Reunion> reglementaire;
     private List<Reunion> comportemental;
     private List<Reunion> livretPrevention;
-    private List<Reunion> journeeMetier;
+        private List<Reunion> journeeMetier;
 
     public PAP_BDD(PAP pap){
         risque = new ArrayList<Reunion>();

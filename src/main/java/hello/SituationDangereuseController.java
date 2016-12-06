@@ -5,12 +5,10 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.ws.rs.core.Context;
 import java.io.File;
@@ -22,11 +20,11 @@ import java.util.List;
 /**
  * Created by nicol on 17/11/2016.
  */
-@CrossOrigin(origins= "http://localhost:8100")
+@CrossOrigin(origins= "*")
 @Controller
 public class SituationDangereuseController{
 
-    public static final String DEST = "situationDangereuse.pdf";
+    public static final String DEST = "/PDF/SD/situationDangereuse";
     @Autowired
     SituationDangereuseDao situationDangereuseDao;
 
@@ -39,19 +37,19 @@ public class SituationDangereuseController{
         System.out.println("Description :" + sd.getDescription());
         System.out.println("Action :" + sd.getActionImmediate());
 
-        //Ajout BDD
-        ;
+        int id=situationDangereuseDao.ajouterSituationDangereuse(foundSd);
 
         // Creation PDF
         PDFSituationDangereuse pdfSD = new PDFSituationDangereuse(foundSd);
         Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(DEST));
+        PdfWriter.getInstance(document, new FileOutputStream(DEST+id+".pdf"));
         document.open();
         pdfSD.addMetaData(document);
         pdfSD.addContent(document);
         document.close();
 
-        return situationDangereuseDao.ajouterSituationDangereuse(foundSd);
+        //Ajout BDD
+        return true;
     }
 
     @RequestMapping("/situationDangereuseVisu")
@@ -60,6 +58,16 @@ public class SituationDangereuseController{
         return situationDangereuseDao.getSituationsDangereuses();
     }
 
+    @RequestMapping("/situationD")
+    public @ResponseBody
+    List<SituationDangereuse> listerSD(@RequestBody @Valid final String login, @Context final HttpServletRequest request) throws IOException {
+        return situationDangereuseDao.getSituationsDangereusesPSS(login);
+    }
+
+    @RequestMapping(value = "/getPDF", method = RequestMethod.GET)
+    public @ResponseBody byte[] getOpenedEventsInPdf(HttpServletResponse response) {
+        return null;
+    }
 
 
 }

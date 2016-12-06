@@ -415,6 +415,6 @@ public class VPS {
 
 
     public VPS_BDD getVPS_BDD (){
-        return new VPS_BDD(dateVPS,chantierVPS,visiteurVPS);
+        return new VPS_BDD(this);
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 @Transactional
 public interface EmployeDao {
 
-    List<Employe> getEmploye() throws IOException;
+    Employe getEmploye(String login) throws IOException;
 
     List<Employe> getEmployeVPS() throws IOException;
 

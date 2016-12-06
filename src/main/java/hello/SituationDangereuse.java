@@ -11,7 +11,8 @@ public class SituationDangereuse {
     private String latitude;
     private String longitude;
     private Date date;
-
+    private String nni;
+    private String imgURI;
 
     public int getId() {
         return id;
@@ -67,5 +68,21 @@ public class SituationDangereuse {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getNni() {
+        return nni;
+    }
+
+    public void setNni(String nni) {
+        this.nni = nni;
+    }
+
+    public String getImgURI() {
+        return imgURI;
+    }
+
+    public void setImgURI(String imgURI) {
+        this.imgURI = imgURI;
     }
 }

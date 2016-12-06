@@ -19,11 +19,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-@CrossOrigin(origins= "http://localhost:8100")
+@CrossOrigin(origins= "*")
 @Controller
 public class AnomalieVehiculeController {
 
-    public static final String DEST = "anomalieVehicule .pdf";
+    public static final String DEST = "/PDF/AV/anomalieVehicule";
     @Autowired
     AnomalieVehiculeDao anomalieVehiculeDao;
 
@@ -39,17 +39,19 @@ public class AnomalieVehiculeController {
         System.out.println("Immatriculation :" + av.getImmatriculation());
         System.out.println("Detail :" + av.getDetail());
 
+        int id=anomalieVehiculeDao.ajouterAnomalieVehicule(foundAv);
+
         // Creation PDF
         PDFAnomalieVehicule pdfSD = new PDFAnomalieVehicule(foundAv);
         Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(DEST));
+        PdfWriter.getInstance(document, new FileOutputStream(DEST+id+".pdf"));
         document.open();
         pdfSD.addMetaData(document);
         pdfSD.addContent(document);
         document.close();
 
         // Ajout BDD
-        return anomalieVehiculeDao.ajouterAnomalieVehicule(foundAv);
+        return true;
     }
 
     @RequestMapping("/anomalieVehiculeVisu")

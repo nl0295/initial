@@ -13,9 +13,9 @@ import java.util.List;
 public class EmployeDaoImpl implements EmployeDao {
 
     @Override
-    public List<Employe> getEmploye() throws IOException {
+    public Employe getEmploye(String login) throws IOException {
         ObjectMapper mapper =new ObjectMapper();
-        List<Employe> res= mapper.readValue(new URL("http://82.223.14.220/ewp2486/employe.php"), List.class);
+        Employe res= mapper.readValue(new URL("http://82.223.14.220/ewp2486/employe.php?login="+login), Employe.class);
         return res;
     };
 

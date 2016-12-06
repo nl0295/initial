@@ -22,11 +22,11 @@ import java.util.List;
  * Created by nicol on 22/11/2016.
  */
 
-@CrossOrigin(origins= "http://localhost:8100")
+@CrossOrigin(origins= "*")
 @Controller
 public class VPSController {
 
-    public static final String DEST = "vps.pdf";
+    public static final String DEST = "/PDF/VPS/vps";
 
     @Autowired
     VPSDao vpsDao;
@@ -39,17 +39,19 @@ public class VPSController {
         System.out.println("Visiteur :" + vps.getVisiteurVPS());
         System.out.println("Date :" + vps.getDateVPS());
 
+        int id=vpsDao.ajouterVPS(foundVPS);
+
         // Creation PDF
         PDFVPS pdfVPS = new PDFVPS(vps);
         Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(DEST));
+        PdfWriter.getInstance(document, new FileOutputStream(DEST+id+".pdf"));
         document.open();
         pdfVPS.addMetaData(document);
         pdfVPS.addContent(document);
         document.close();
 
         //Ajout BDD
-        return vpsDao.ajouterVPS(foundVPS);
+        return true;
     }
 
 
@@ -57,6 +59,11 @@ public class VPSController {
     @RequestMapping("/vpsVisu")
     public @ResponseBody List<VPS_BDD> lister() throws IOException {
         return vpsDao.getListeVPS();
+    }
+
+    @RequestMapping("/vpsPSS")
+    public @ResponseBody List<VPS_BDD> ajouter(@RequestBody @Valid final String login, @Context final HttpServletRequest request) throws IOException {
+        return vpsDao.getListeVPS(login);
     }
 
 }

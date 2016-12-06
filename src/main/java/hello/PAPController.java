@@ -5,25 +5,26 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-@CrossOrigin(origins= "http://localhost:8100")
+@CrossOrigin(origins= "*")
 @Controller
 public class PAPController {
 
-    public static final String DEST = "pap.pdf";
+    public static final String DEST = "/PDF/PAP/pap";
 
     @Autowired
     PAPDao papDao;
@@ -42,12 +43,12 @@ public class PAPController {
         System.out.println(foundPAP.getPointFaible3());
         System.out.println(foundPAP.getPointRisques1());
 
-
+       int id= papDao.ajouterPAP(foundPAP);
 
         //Création d'un PDF
         PDFPAP pdfPAP = new PDFPAP(foundPAP);
         Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(DEST));
+        PdfWriter.getInstance(document, new FileOutputStream(DEST+id+".pdf"));
         document.open();
         pdfPAP.addMetaData(document);
         pdfPAP.addContent(document);
@@ -68,7 +69,13 @@ public class PAPController {
 //        f_stream.close();
 
         //Ajout dans la BDD
-        return papDao.ajouterPAP(foundPAP);
+        return true;
+    }
+
+    @RequestMapping("/papV")
+    public @ResponseBody
+    List<PAP_BDD> lister() throws IOException {
+        return papDao.getPAP();
     }
 
     @RequestMapping("/papEnCours")
@@ -77,13 +84,14 @@ public class PAPController {
         return papDao.getPAPEnCours();
     }
 
-
-
-    @RequestMapping("/papV")
+    @RequestMapping("/papModif")
     public @ResponseBody
-    List<PAP_BDD> lister() throws IOException {
-        return papDao.getPAP();
+    boolean modifier(@RequestBody @Valid final PAP_BDD pap, @Context final HttpServletRequest request) throws IOException {
+        return papDao.modifierPAP(pap);
     }
+
+
+
 
 
 }

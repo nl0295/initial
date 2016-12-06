@@ -13,7 +13,7 @@ import javax.ws.rs.core.Context;
 import java.io.IOException;
 import java.util.List;
 
-@CrossOrigin(origins= "http://localhost:8100")
+@CrossOrigin(origins= "*")
 @Controller
 public class AlerteController {
 

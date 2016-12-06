@@ -13,10 +13,10 @@ import java.util.List;
 public class AnomalieVehiculeDaoImpl implements AnomalieVehiculeDao{
 
     @Override
-    public boolean ajouterAnomalieVehicule(AnomalieVehicule av) throws IOException {
+    public int ajouterAnomalieVehicule(AnomalieVehicule av) throws IOException {
         ObjectMapper mapper =new ObjectMapper();
         StringURL url = new StringURL("http://82.223.14.220/ewp2486/ajouterAV.php?titre="+av.getTitre()+"&immat="+av.getImmatriculation()+"&detail="+av.getDetail());
-        boolean res=mapper.readValue(new URL(url.getString()),boolean.class);
+        int res=mapper.readValue(new URL(url.getString()),Integer.class);
         return res;
     }
 

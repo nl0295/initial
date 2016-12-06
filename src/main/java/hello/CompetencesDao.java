@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 @Transactional
 public interface CompetencesDao {
-    List<Competences> listeCompetences() throws IOException;
+    List<Competences> listeCompetences(String login) throws IOException;
 }
