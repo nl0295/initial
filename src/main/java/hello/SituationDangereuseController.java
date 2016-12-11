@@ -37,7 +37,7 @@ public class SituationDangereuseController{
         System.out.println("Description :" + sd.getDescription());
         System.out.println("Action :" + sd.getActionImmediate());
 
-        int id=situationDangereuseDao.ajouterSituationDangereuse(foundSd.getSDBDD());
+        int id=situationDangereuseDao.ajouterSituationDangereuse(foundSd);
 
         // Creation PDF
         PDFSituationDangereuse pdfSD = new PDFSituationDangereuse(foundSd);

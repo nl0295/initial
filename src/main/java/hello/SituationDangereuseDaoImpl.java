@@ -15,11 +15,12 @@ import java.util.List;
 public class SituationDangereuseDaoImpl implements SituationDangereuseDao {
 
     // Ajoute une SD dans la base de données
-    public int ajouterSituationDangereuse(SituationDangereuse_BDD sd) throws IOException {
+    public int ajouterSituationDangereuse(SituationDangereuse sd) throws IOException {
         ObjectMapper mapper =new ObjectMapper();
         String date=""+(sd.getDate().getDate())+"/"+(sd.getDate().getMonth()+1)+"/"+(sd.getDate().getYear()+1900);
         System.out.println(date);
-        StringURL url = new StringURL("http://82.223.14.220/ewp2486/ajouterSD.php?date="+date+"&chantier="+sd.getChantier()+"&description="+sd.getDescription()+"&action="+sd.getActionImmediate()+"&latitude="+sd.getLatitude()+"&longitude="+sd.getLongitude()+"&nni="+sd.getNni()+"&nni="+sd.getImgURI()+"&nni="+sd.getNni());
+        StringURL url = new StringURL("http://82.223.14.220/ewp2486/ajouterSD.php?date="+date+"&chantier="+sd.getChantier()+"&description="+sd.getDescription()+"&action="+sd.getActionImmediate()+"&latitude="+sd.getLatitude()+"&longitude="+sd.getLongitude()+"&nni="+sd.getNni()+"&imgURI="+sd.getImgURI()+"&imgURI2="+sd.getImgURI2());
+        System.out.println("--- TEST --- "+url);
         int res=mapper.readValue(new URL(url.getString()),Integer.class);
         return res;
     }

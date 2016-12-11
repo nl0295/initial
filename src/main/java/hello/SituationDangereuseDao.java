@@ -10,7 +10,7 @@ import java.util.List;
 @Transactional
 public interface SituationDangereuseDao {
 
-    int ajouterSituationDangereuse(SituationDangereuse_BDD sd) throws IOException;
+    int ajouterSituationDangereuse(SituationDangereuse sd) throws IOException;
 
     List<SituationDangereuse_BDD> getSituationsDangereuses() throws IOException;
 
