@@ -69,7 +69,12 @@ public class PDFVPS {
         String remarque ="Remarque(s) supplémentaire(s) : "+vps.getRemarqueVps();
 
         String risquesBon ="Risques signalés sur le Bon du travail : "+vps.getRisqueSignale();
-        String top ="TOP : ";
+        String topString = "";
+        if (vps.isTopFait()==true) topString+="fait, ";
+        else topString+=" non réalisé ,";
+        if (vps.isTopTrace()==true) topString+="tracé";
+        else topString+="non tracé";
+        String top ="TOP : "+topString;
         String autresRisquesResp ="Autres risques pris en compte par le responsable de l'équipe avant intervention : "+vps.getAutreRisqueResponsable();
         String respectCpp ="Respect des CPP - Consignes - Instructions : "+vps.getRespectCPP();
         String epi ="EP individuelles et collectives : "+vps.getEpi();

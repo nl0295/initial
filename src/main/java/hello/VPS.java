@@ -20,7 +20,6 @@ public class VPS {
     private String nomAgentVPS5;
     private String nomAgentVPS6;
     private String activiteVPS;
-    private String activiteAutre;
     private String designationInterv;
     private String typeE;
     private String methodeTvx;
@@ -163,14 +162,6 @@ public class VPS {
 
     public void setActiviteVPS(String activiteVPS) {
         this.activiteVPS = activiteVPS;
-    }
-
-    public String getActiviteAutre() {
-        return activiteAutre;
-    }
-
-    public void setActiviteAutre(String activiteAutre) {
-        this.activiteAutre = activiteAutre;
     }
 
     public String getMethodeTvx() {

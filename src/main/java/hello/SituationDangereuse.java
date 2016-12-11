@@ -13,6 +13,7 @@ public class SituationDangereuse {
     private Date date;
     private String nni;
     private String imgURI;
+    private String imgURI2;
 
     public int getId() {
         return id;
@@ -84,5 +85,17 @@ public class SituationDangereuse {
 
     public void setImgURI(String imgURI) {
         this.imgURI = imgURI;
+    }
+
+    public String getImgURI2() {
+        return imgURI2;
+    }
+
+    public void setImgURI2(String imgURI2) {
+        this.imgURI2 = imgURI2;
+    }
+
+    public SituationDangereuse_BDD getSDBDD(){
+        return new SituationDangereuse_BDD(this);
     }
 }

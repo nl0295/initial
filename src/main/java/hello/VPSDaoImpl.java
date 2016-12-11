@@ -15,9 +15,9 @@ public class VPSDaoImpl implements VPSDao{
     @Override
     public int ajouterVPS(VPS vps) throws IOException {
         ObjectMapper mapper =new ObjectMapper();
-        String date=""+(vps.getDateVPS().getYear()+1900)+"_"+(vps.getDateVPS().getMonth()+1)+"_"+vps.getDateVPS().getDate();
+        String date=""+(vps.getDateVPS().getDate())+"/"+(vps.getDateVPS().getMonth()+1)+"/"+(vps.getDateVPS().getYear()+1900);
         System.out.println(date);
-        StringURL url = new StringURL("http://82.223.14.220/ewp2486/ajouterVPS.php?date="+date+"&chantier="+vps.getChantierVPS()+"&visiteur="+vps.getVisiteurVPS()+"&ptFaible1="+vps.getPtFaible1()+"&ptFaible2="+vps.getPtFaible2()+"&ptFaible3="+vps.getPtFaible3()+"resp1="+vps.getResp1()+"resp2="+vps.getResp2()+"resp3="+vps.getResp3());
+        StringURL url = new StringURL("http://82.223.14.220/ewp2486/ajouterVPS.php?date="+date+"&chantier="+vps.getChantierVPS()+"&visiteur="+vps.getVisiteurVPS()+"&ptFaible1="+vps.getPtFaible1()+"&ptFaible2="+vps.getPtFaible2()+"&ptFaible3="+vps.getPtFaible3()+"&resp1="+vps.getResp1()+"&resp2="+vps.getResp2()+"&resp3="+vps.getResp3());
         int res=mapper.readValue(new URL(url.getString()),Integer.class);
         return res;
     }

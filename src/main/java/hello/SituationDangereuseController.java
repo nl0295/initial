@@ -37,7 +37,7 @@ public class SituationDangereuseController{
         System.out.println("Description :" + sd.getDescription());
         System.out.println("Action :" + sd.getActionImmediate());
 
-        int id=situationDangereuseDao.ajouterSituationDangereuse(foundSd);
+        int id=situationDangereuseDao.ajouterSituationDangereuse(foundSd.getSDBDD());
 
         // Creation PDF
         PDFSituationDangereuse pdfSD = new PDFSituationDangereuse(foundSd);
@@ -54,13 +54,13 @@ public class SituationDangereuseController{
 
     @RequestMapping("/situationDangereuseVisu")
     public @ResponseBody
-    List<SituationDangereuse> lister() throws IOException {
+    List<SituationDangereuse_BDD> lister() throws IOException {
         return situationDangereuseDao.getSituationsDangereuses();
     }
 
     @RequestMapping("/situationD")
     public @ResponseBody
-    List<SituationDangereuse> listerSD(@RequestBody @Valid final String login, @Context final HttpServletRequest request) throws IOException {
+    List<SituationDangereuse_BDD> listerSD(@RequestBody @Valid final String login, @Context final HttpServletRequest request) throws IOException {
         return situationDangereuseDao.getSituationsDangereusesPSS(login);
     }
 

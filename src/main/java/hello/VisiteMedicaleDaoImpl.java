@@ -17,7 +17,7 @@ public class VisiteMedicaleDaoImpl implements VisiteMedicaleDao {
     @Override
     public List<VisiteMedicale> getVisiteMedicale(String login) throws IOException {
         ObjectMapper mapper =new ObjectMapper();
-        final DateFormat df =new SimpleDateFormat("yyyy-MM-dd");
+        final DateFormat df =new SimpleDateFormat("dd/MM/yyyy");
         mapper.setDateFormat(df);
         List<VisiteMedicale> res= mapper.readValue(new URL("http://82.223.14.220/ewp2486/visiteMedicale.php?login="+login), List.class);
         return res;

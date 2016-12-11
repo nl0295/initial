@@ -17,7 +17,7 @@ public class SecouristeDaoImpl implements SecouristeDao{
     @Override
     public List<Secouriste> getSecouriste(String login) throws IOException {
         ObjectMapper mapper =new ObjectMapper();
-        final DateFormat df =new SimpleDateFormat("yyyy-MM-dd");
+        final DateFormat df =new SimpleDateFormat("dd/MM/yyyy");
         mapper.setDateFormat(df);
         List<Secouriste> res= mapper.readValue(new URL("http://82.223.14.220/ewp2486/secouriste.php?login="+login), List.class);
         System.out.println(res.size());

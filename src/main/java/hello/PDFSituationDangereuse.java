@@ -1,6 +1,7 @@
 package hello;
 
 
+import java.io.IOException;
 import java.util.Date;
 
 import com.itextpdf.text.*;
@@ -37,7 +38,9 @@ public class PDFSituationDangereuse {
     }
 
     public void addContent(Document document)
-            throws DocumentException {
+            throws DocumentException, IOException {
+
+        String dateF=""+(situationDangereuse.getDate().getDate())+"/"+(situationDangereuse.getDate().getMonth()+1)+"/"+(situationDangereuse.getDate().getYear()+1900);
 
         String titre = "[Situation Dangereuse]";
         String chantier = "Chantier : "+situationDangereuse.getChantier();
@@ -45,7 +48,7 @@ public class PDFSituationDangereuse {
         String action = "Action Immediate : "+situationDangereuse.getActionImmediate();
         String latitude = "Latitude : "+situationDangereuse.getLatitude();
         String longitude= "Longitude : "+situationDangereuse.getLongitude();
-        String date = "Date : "+situationDangereuse.getDate();
+        String date = "Date : "+dateF;
 
 
         Paragraph preface = new Paragraph();
@@ -68,9 +71,16 @@ public class PDFSituationDangereuse {
 
         document.add(preface);
 
+        if (situationDangereuse.getImgURI()!=null&&situationDangereuse.getImgURI()!="") {
+            Image img = Image.getInstance(situationDangereuse.getImgURI());
+            document.add(img);
+            addEmptyLine(preface, 2);
+        }
 
-        //Image img = Image.getInstance(situationDangereuse.getImage());
-        //document.add(img);
+        if (situationDangereuse.getImgURI2()!=null&&situationDangereuse.getImgURI2()!="") {
+            Image img2 = Image.getInstance(situationDangereuse.getImgURI2());
+            document.add(img2);
+        }
 
 
     }
