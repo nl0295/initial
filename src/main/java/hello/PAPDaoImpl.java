@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -19,7 +18,7 @@ public class PAPDaoImpl implements PAPDao {
     public int ajouterPAP(PAP pap) throws IOException {
         PAP_BDD papBDD=new PAP_BDD(pap);
         ObjectMapper mapper =new ObjectMapper();
-        String date=""+(pap.getDatePAP().getDate())+"/"+(pap.getDatePAP().getMonth()+1)+"/"+(pap.getDatePAP().getYear()+1900);
+        String date=""+(pap.getDatePAP().getYear()+1900)+"-"+(pap.getDatePAP().getMonth()+1)+"-"+(pap.getDatePAP().getDate());
 
         System.out.println(pap.getPointRisqueRoutier1());
 
@@ -32,7 +31,7 @@ public class PAPDaoImpl implements PAPDao {
 
         for(Reunion r : papBDD.getRisque()){
             String dateReunion="";
-            if (r.getDate()!=null) dateReunion=""+(r.getDate().getDate())+"/"+(r.getDate().getMonth()+1)+"/"+(r.getDate().getYear()+1900);
+            if (r.getDate()!=null) dateReunion=""+(r.getDate().getYear()+1900)+"-"+(r.getDate().getMonth()+1)+"-"+(r.getDate().getDate());
             StringURL urlReunion = new StringURL("http://82.223.14.220/ewp2486/ajouterReunion.php?date="+dateReunion
                     +"&titre="+r.getTitre()+"&theme=risque"+"&idPAP="+idPAP);
 
@@ -41,7 +40,7 @@ public class PAPDaoImpl implements PAPDao {
 
         for(Reunion r : papBDD.getMre()){
             String dateReunion="";
-            if (r.getDate()!=null) dateReunion=""+(r.getDate().getDate())+"/"+(r.getDate().getMonth()+1)+"/"+(r.getDate().getYear()+1900);
+            if (r.getDate()!=null) dateReunion=""+(r.getDate().getYear()+1900)+"-"+(r.getDate().getMonth()+1)+"-"+(r.getDate().getDate());
             StringURL urlReunion = new StringURL("http://82.223.14.220/ewp2486/ajouterReunion.php?date="+dateReunion
                     +"&titre="+r.getTitre()+"&theme=mre"+"&idPAP="+idPAP);
 
@@ -50,7 +49,7 @@ public class PAPDaoImpl implements PAPDao {
 
         for(Reunion r : papBDD.getRisqueRoutier()){
             String dateReunion="";
-            if (r.getDate()!=null) dateReunion=""+(r.getDate().getDate())+"/"+(r.getDate().getMonth()+1)+"/"+(r.getDate().getYear()+1900);
+            if (r.getDate()!=null) dateReunion=""+(r.getDate().getYear()+1900)+"-"+(r.getDate().getMonth()+1)+"-"+(r.getDate().getDate());
             StringURL urlReunion = new StringURL("http://82.223.14.220/ewp2486/ajouterReunion.php?date="+dateReunion
                     +"&titre="+r.getTitre()+"&theme=risqueRoutier"+"&idPAP="+idPAP);
 
@@ -59,7 +58,7 @@ public class PAPDaoImpl implements PAPDao {
 
         for(Reunion r : papBDD.getReglementaire()){
             String dateReunion="";
-            if (r.getDate()!=null) dateReunion=""+(r.getDate().getDate())+"/"+(r.getDate().getMonth()+1)+"/"+(r.getDate().getYear()+1900);
+            if (r.getDate()!=null) dateReunion=""+(r.getDate().getYear()+1900)+"-"+(r.getDate().getMonth()+1)+"-"+(r.getDate().getDate());
             StringURL urlReunion = new StringURL("http://82.223.14.220/ewp2486/ajouterReunion.php?date="+dateReunion
                     +"&titre="+r.getTitre()+"&theme=reglementaire"+"&idPAP="+idPAP);
 
@@ -69,7 +68,7 @@ public class PAPDaoImpl implements PAPDao {
 
         for(Reunion r : papBDD.getComportemental()){
             String dateReunion="";
-            if (r.getDate()!=null) dateReunion=""+(r.getDate().getDate())+"/"+(r.getDate().getMonth()+1)+"/"+(r.getDate().getYear()+1900);
+            if (r.getDate()!=null) dateReunion=""+(r.getDate().getYear()+1900)+"-"+(r.getDate().getMonth()+1)+"-"+(r.getDate().getDate());
             StringURL urlReunion = new StringURL("http://82.223.14.220/ewp2486/ajouterReunion.php?date="+dateReunion
                     +"&titre="+r.getTitre()+"&theme=comportemental"+"&idPAP="+idPAP);
 
@@ -78,7 +77,7 @@ public class PAPDaoImpl implements PAPDao {
 
         for(Reunion r : papBDD.getLivretPrevention()){
             String dateReunion="";
-            if (r.getDate()!=null) dateReunion=""+(r.getDate().getDate())+"/"+(r.getDate().getMonth()+1)+"/"+(r.getDate().getYear()+1900);
+            if (r.getDate()!=null) dateReunion=""+(r.getDate().getYear()+1900)+"-"+(r.getDate().getMonth()+1)+"-"+(r.getDate().getDate());
             StringURL urlReunion = new StringURL("http://82.223.14.220/ewp2486/ajouterReunion.php?date="+dateReunion
                     +"&titre="+r.getTitre()+"&theme=livretPrevention"+"&idPAP="+idPAP);
 
@@ -87,7 +86,7 @@ public class PAPDaoImpl implements PAPDao {
 
         for(Reunion r : papBDD.getJourneeMetier()){
             String dateReunion="";
-            if (r.getDate()!=null) dateReunion=""+(r.getDate().getDate())+"/"+(r.getDate().getMonth()+1)+"/"+(r.getDate().getYear()+1900);
+            if (r.getDate()!=null) dateReunion=""+(r.getDate().getYear()+1900)+"-"+(r.getDate().getMonth()+1)+"-"+(r.getDate().getDate());
             StringURL urlReunion = new StringURL("http://82.223.14.220/ewp2486/ajouterReunion.php?date="+dateReunion
                     +"&titre="+r.getTitre()+"&theme=journeeMetier"+"&idPAP="+idPAP);
 
@@ -106,12 +105,13 @@ public class PAPDaoImpl implements PAPDao {
         List<PAP_BDD> res= mapper.readValue(new URL("http://82.223.14.220/ewp2486/listePAP.php"), List.class);
         return res;
     }
+
     //Méthode pour récuperer le PAP de l'année en cours
-    public PAP_BDD getPAPEnCours() throws IOException {
+    public List<PAP_BDD> getPAPEnCours() throws IOException {
         ObjectMapper mapper =new ObjectMapper();
         final DateFormat df =new SimpleDateFormat("dd/MM/yyyy");
         mapper.setDateFormat(df);
-        PAP_BDD res= mapper.readValue(new URL("http://82.223.14.220/ewp2486/PAPEnCours.php"), PAP_BDD.class);
+        List<PAP_BDD> res= mapper.readValue(new URL("http://82.223.14.220/ewp2486/PAPEnCours.php"), List.class);
         return res;
     }
 
@@ -125,36 +125,45 @@ public class PAPDaoImpl implements PAPDao {
 
         for(Reunion r : papBDD.getRisque()){
             String dateReunion="";
-            if (r.getDate()!=null) dateReunion=""+(r.getDate().getDate())+"/"+(r.getDate().getMonth()+1)+"/"+(r.getDate().getYear()+1900);
+            if (r.getDate()!=null) dateReunion=""+(r.getDate().getYear()+1900+"-"+(r.getDate().getMonth()+1)+"-"+(r.getDate().getDate()));
+            String dateReunionModif="";
+            if (r.getDateModif()!=null) dateReunionModif=""+(r.getDateModif().getYear()+1900+"-"+(r.getDateModif().getMonth()+1)+"-"+(r.getDateModif().getDate()));
             StringURL urlReunion = new StringURL("http://82.223.14.220/ewp2486/modifierReunion.php?date="+dateReunion
-                    +"&titre="+r.getTitre()+"&theme=risque"+"&idPAP="+idPAP+"&dateModif="+r.getDateModif());
+                    +"&titre="+r.getTitre()+"&theme=risque"+"&idPAP="+idPAP+"&dateModif="+dateReunionModif);
+            System.out.println(urlReunion.getString());
 
             mapper.readValue(new URL(urlReunion.getString()),boolean.class);
         }
 
         for(Reunion r : papBDD.getMre()){
             String dateReunion="";
-            if (r.getDate()!=null) dateReunion=""+(r.getDate().getDate())+"/"+(r.getDate().getMonth()+1)+"/"+(r.getDate().getYear()+1900);
+            if (r.getDate()!=null) dateReunion=""+(r.getDate().getYear()+1900+"-"+(r.getDate().getMonth()+1)+"-"+(r.getDate().getDate()));
+            String dateReunionModif="";
+            if (r.getDateModif()!=null) dateReunionModif=""+(r.getDateModif().getYear()+1900+"-"+(r.getDateModif().getMonth()+1)+"-"+(r.getDateModif().getDate()));
             StringURL urlReunion = new StringURL("http://82.223.14.220/ewp2486/modifierReunion.php?date="+dateReunion
-                    +"&titre="+r.getTitre()+"&theme=mre"+"&idPAP="+idPAP+"&dateModif="+r.getDateModif());
+                    +"&titre="+r.getTitre()+"&theme=mre"+"&idPAP="+idPAP+"&dateModif="+dateReunionModif);
 
             mapper.readValue(new URL(urlReunion.getString()),boolean.class);
         }
 
         for(Reunion r : papBDD.getRisqueRoutier()){
             String dateReunion="";
-            if (r.getDate()!=null) dateReunion=""+(r.getDate().getDate())+"/"+(r.getDate().getMonth()+1)+"/"+(r.getDate().getYear()+1900);
+            if (r.getDate()!=null) dateReunion=""+(r.getDate().getYear()+1900+"-"+(r.getDate().getMonth()+1)+"-"+(r.getDate().getDate()));
+            String dateReunionModif="";
+            if (r.getDateModif()!=null) dateReunionModif=""+(r.getDateModif().getYear()+1900+"-"+(r.getDateModif().getMonth()+1)+"-"+(r.getDateModif().getDate()));
             StringURL urlReunion = new StringURL("http://82.223.14.220/ewp2486/modifierReunion.php?date="+dateReunion
-                    +"&titre="+r.getTitre()+"&theme=risqueRoutier"+"&idPAP="+idPAP+"&dateModif="+r.getDateModif());
+                    +"&titre="+r.getTitre()+"&theme=risqueRoutier"+"&idPAP="+idPAP+"&dateModif="+dateReunionModif);
 
             mapper.readValue(new URL(urlReunion.getString()),boolean.class);
         }
 
         for(Reunion r : papBDD.getReglementaire()){
             String dateReunion="";
-            if (r.getDate()!=null) dateReunion=""+(r.getDate().getDate())+"/"+(r.getDate().getMonth()+1)+"/"+(r.getDate().getYear()+1900);
+            if (r.getDate()!=null) dateReunion=""+(r.getDate().getYear()+1900+"-"+(r.getDate().getMonth()+1)+"-"+(r.getDate().getDate()));
+            String dateReunionModif="";
+            if (r.getDateModif()!=null) dateReunionModif=""+(r.getDateModif().getYear()+1900+"-"+(r.getDateModif().getMonth()+1)+"-"+(r.getDateModif().getDate()));
             StringURL urlReunion = new StringURL("http://82.223.14.220/ewp2486/modifierReunion.php?date="+dateReunion
-                    +"&titre="+r.getTitre()+"&theme=reglementaire"+"&idPAP="+idPAP+"&dateModif="+r.getDateModif());
+                    +"&titre="+r.getTitre()+"&theme=reglementaire"+"&idPAP="+idPAP+"&dateModif="+dateReunionModif);
 
             mapper.readValue(new URL(urlReunion.getString()),boolean.class);
         }
@@ -162,27 +171,33 @@ public class PAPDaoImpl implements PAPDao {
 
         for(Reunion r : papBDD.getComportemental()){
             String dateReunion="";
-            if (r.getDate()!=null) dateReunion=""+(r.getDate().getDate())+"/"+(r.getDate().getMonth()+1)+"/"+(r.getDate().getYear()+1900);
+            if (r.getDate()!=null) dateReunion=""+(r.getDate().getYear()+1900+"-"+(r.getDate().getMonth()+1)+"-"+(r.getDate().getDate()));
+            String dateReunionModif="";
+            if (r.getDateModif()!=null) dateReunionModif=""+(r.getDateModif().getYear()+1900+"-"+(r.getDateModif().getMonth()+1)+"-"+(r.getDateModif().getDate()));
             StringURL urlReunion = new StringURL("http://82.223.14.220/ewp2486/modifierReunion.php?date="+dateReunion
-                    +"&titre="+r.getTitre()+"&theme=comportemental"+"&idPAP="+idPAP+"&dateModif="+r.getDateModif());
+                    +"&titre="+r.getTitre()+"&theme=comportemental"+"&idPAP="+idPAP+"&dateModif="+dateReunionModif);
 
             mapper.readValue(new URL(urlReunion.getString()),boolean.class);
         }
 
         for(Reunion r : papBDD.getLivretPrevention()){
             String dateReunion="";
-            if (r.getDate()!=null) dateReunion=""+(r.getDate().getDate())+"/"+(r.getDate().getMonth()+1)+"/"+(r.getDate().getYear()+1900);
+            if (r.getDate()!=null) dateReunion=""+(r.getDate().getYear()+1900+"-"+(r.getDate().getMonth()+1)+"-"+(r.getDate().getDate()));
+            String dateReunionModif="";
+            if (r.getDateModif()!=null) dateReunionModif=""+(r.getDateModif().getYear()+1900+"-"+(r.getDateModif().getMonth()+1)+"-"+(r.getDateModif().getDate()));
             StringURL urlReunion = new StringURL("http://82.223.14.220/ewp2486/modifierReunion.php?date="+dateReunion
-                    +"&titre="+r.getTitre()+"&theme=livretPrevention"+"&idPAP="+idPAP+"&dateModif="+r.getDateModif());
+                    +"&titre="+r.getTitre()+"&theme=livretPrevention"+"&idPAP="+idPAP+"&dateModif="+dateReunionModif);
 
             mapper.readValue(new URL(urlReunion.getString()),boolean.class);
         }
 
         for(Reunion r : papBDD.getJourneeMetier()){
             String dateReunion="";
-            if (r.getDate()!=null) dateReunion=""+(r.getDate().getDate())+"/"+(r.getDate().getMonth()+1)+"/"+(r.getDate().getYear()+1900);
+            if (r.getDate()!=null) dateReunion=""+(r.getDate().getYear()+1900+"-"+(r.getDate().getMonth()+1)+"-"+(r.getDate().getDate()));
+            String dateReunionModif="";
+            if (r.getDateModif()!=null) dateReunionModif=""+(r.getDateModif().getYear()+1900+"-"+(r.getDateModif().getMonth()+1)+"-"+(r.getDateModif().getDate()));
             StringURL urlReunion = new StringURL("http://82.223.14.220/ewp2486/modifierReunion.php?date="+dateReunion
-                    +"&titre="+r.getTitre()+"&theme=journeeMetier"+"&idPAP="+idPAP+"&dateModif="+r.getDateModif());
+                    +"&titre="+r.getTitre()+"&theme=journeeMetier"+"&idPAP="+idPAP+"&dateModif="+dateReunionModif);
 
             mapper.readValue(new URL(urlReunion.getString()),boolean.class);
         }

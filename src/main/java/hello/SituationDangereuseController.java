@@ -54,13 +54,13 @@ public class SituationDangereuseController{
 
     @RequestMapping("/situationDangereuseVisu")
     public @ResponseBody
-    List<SituationDangereuse_BDD> lister() throws IOException {
+    List<SituationDangereuse> lister() throws IOException {
         return situationDangereuseDao.getSituationsDangereuses();
     }
 
     @RequestMapping("/situationD")
     public @ResponseBody
-    List<SituationDangereuse_BDD> listerSD(@RequestBody @Valid final String login, @Context final HttpServletRequest request) throws IOException {
+    List<SituationDangereuse> listerSD(@RequestBody @Valid final String login, @Context final HttpServletRequest request) throws IOException {
         return situationDangereuseDao.getSituationsDangereusesPSS(login);
     }
 

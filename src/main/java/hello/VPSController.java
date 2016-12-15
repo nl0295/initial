@@ -57,12 +57,12 @@ public class VPSController {
 
 
     @RequestMapping("/vpsVisu")
-    public @ResponseBody List<VPS_BDD> lister() throws IOException {
+    public @ResponseBody List<VPS> lister() throws IOException {
         return vpsDao.getListeVPS();
     }
 
     @RequestMapping("/vpsPSS")
-    public @ResponseBody List<VPS_BDD> ajouter(@RequestBody @Valid final String login, @Context final HttpServletRequest request) throws IOException {
+    public @ResponseBody List<VPS> ajouter(@RequestBody @Valid final String login, @Context final HttpServletRequest request) throws IOException {
         return vpsDao.getListeVPS(login);
     }
 

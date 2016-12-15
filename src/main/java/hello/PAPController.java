@@ -2,20 +2,15 @@ package hello;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.log.SysoCounter;
 import com.itextpdf.text.pdf.PdfWriter;
-import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -80,13 +75,17 @@ public class PAPController {
 
     @RequestMapping("/papEnCours")
     public @ResponseBody
-    PAP_BDD recupPAPEnCours() throws IOException {
+    List<PAP_BDD> recupPAPEnCours() throws IOException {
         return papDao.getPAPEnCours();
     }
 
     @RequestMapping("/papModif")
     public @ResponseBody
     boolean modifier(@RequestBody @Valid final PAP_BDD pap, @Context final HttpServletRequest request) throws IOException {
+        System.out.println("Risque - "+pap.getRisque().size());
+        if (pap.getRisque().size()!=0) System.out.println(pap.getRisque().get(0).getDateModif());
+        System.out.println("Mre - "+pap.getMre().size());
+
         return papDao.modifierPAP(pap);
     }
 

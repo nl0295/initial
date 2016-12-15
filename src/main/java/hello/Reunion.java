@@ -11,6 +11,8 @@ public class Reunion {
     private Date date;
     private Date dateModif;
 
+    public Reunion() {}
+
     public Reunion(String t, Date d){
         titre=t;
         date=d;

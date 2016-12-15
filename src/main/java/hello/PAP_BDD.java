@@ -23,6 +23,8 @@ public class PAP_BDD {
     private List<Reunion> livretPrevention;
     private List<Reunion> journeeMetier;
 
+    public PAP_BDD(){}
+
     public PAP_BDD(PAP pap){
         risque = new ArrayList<Reunion>();
         mre = new ArrayList<Reunion>();

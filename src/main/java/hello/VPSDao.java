@@ -12,8 +12,8 @@ public interface VPSDao {
 
     int ajouterVPS(VPS vps) throws IOException;
 
-    List<VPS_BDD> getListeVPS() throws IOException;
+    List<VPS> getListeVPS() throws IOException;
 
-    List<VPS_BDD> getListeVPS(String login) throws IOException;
+    List<VPS> getListeVPS(String login) throws IOException;
 
 }

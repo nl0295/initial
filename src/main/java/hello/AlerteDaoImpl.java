@@ -18,7 +18,7 @@ public class AlerteDaoImpl implements AlerteDao {
 
     public boolean ajouterAlerte(Alerte alerte) throws IOException {
         ObjectMapper mapper =new ObjectMapper();
-        String date=""+(alerte.getDate().getDate()+1900)+"/"+(alerte.getDate().getMonth()+1)+"/"+(alerte.getDate().getYear()+1900);
+        String date=""+(alerte.getDate().getYear()+1900)+"-"+(alerte.getDate().getMonth()+1)+"-"+(alerte.getDate().getDate());
         System.out.println(date);
         StringURL url = new StringURL("http://82.223.14.220/ewp2486/ajouterAlerte.php?date="+date+"&titre="+alerte.getTitre()+"&description="+alerte.getDescription());
         boolean res=mapper.readValue(new URL(url.getString()),boolean.class);
